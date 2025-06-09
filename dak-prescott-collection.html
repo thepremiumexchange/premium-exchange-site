@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Premium Exchange - Dak Prescott Collection</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: linear-gradient(135deg, #e6e6e6 0%, #ffffff 100%);
+      color: #333;
+      line-height: 1.6;
+    }
+    /* Header */
+    header {
+      background: linear-gradient(90deg, #003087 0%, #041E42 100%);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header img {
+      max-width: 200px;
+      height: auto;
+      margin-right: 20px;
+    }
+    .header-text {
+      flex: 1;
+      text-align: center;
+    }
+    header h1 a {
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 36px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      transition: color 0.3s ease;
+    }
+    header h1 a:hover {
+      color: #869397;
+    }
+    header p {
+      color: #FFFFFF;
+      font-size: 16px;
+      font-style: italic;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
+    /* Navigation */
+    nav {
+      background: #041E42;
+      padding: 10px 0;
+      text-align: center;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    nav ul li {
+      display: inline;
+    }
+    nav ul li a {
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 10px 15px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    nav ul li a:hover, nav ul li a.active {
+      background: #869397;
+      color: #003087;
+      border-radius: 5px;
+    }
+    /* Categories */
+    .categories {
+      padding: 20px;
+      background: #041E42;
+      text-align: center;
+    }
+    .categories a {
+      color: #FFFFFF;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 18px;
+      transition: color 0.3s ease;
+    }
+    .categories a:hover {
+      color: #869397;
+    }
+    /* Collection Section */
+    .collection {
+      padding: 50px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      justify-items: center;
+    }
+    .card-item {
+      background: #FFFFFF;
+      border: 3px solid #869397;
+      border-radius: 10px;
+      padding: 20px;
+      width: 250px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(134,147,151,0.5);
+      border-color: #041E42;
+    }
+    .card-item img {
+      width: 100%;
+      height: auto;
+      max-height: 200px;
+      object-fit: contain;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
+    .card-item h4 {
+      font-size: 18px;
+      color: #003087;
+      margin-bottom: 10px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    .card-item p {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 5px;
+    }
+    .hidden {
+      display: none;
+    }
+    /* Footer */
+    footer {
+      background: linear-gradient(90deg, #003087, #041E42);
+      padding: 20px;
+      text-align: center;
+      color: #FFFFFF;
+      border-top: 5px solid #869397;
+    }
+    footer p {
+      font-size: 14px;
+      margin-bottom: 10px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
+    footer a {
+      color: #FFFFFF;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    footer a:hover {
+      color: #869397;
+    }
+    /* Animations */
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    @keyframes slideUp {
+      0% { transform: translateY(20px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes bounceIn {
+      0% { transform: scale(0.5); opacity: 0; }
+      60% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+      header img {
+        margin-bottom: 10px;
+      }
+      header h1 a {
+        font-size: 28px;
+      }
+      header p {
+        font-size: 14px;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .categories a {
+        display: block;
+        margin: 10px 0;
+      }
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <img src="https://i.imgur.com/alk4ahY.png" alt="The Premium Exchange Logo">
+    <div class="header-text">
+      <h1><a href="https://thepremiumexchange.github.io/premium-exchange-site/" target="_blank">The Premium Exchange</a></h1>
+      <p>Your Ultimate Trading Card Destination</p>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="https://thepremiumexchange.github.io/premium-exchange-site/" target="_blank">Home</a></li>
+    </ul>
+  </nav>
+
+  <!-- Categories -->
+  <div class="categories">
+    <a href="#" data-category="graded-cards">Graded Cards</a>
+    <a href="#" data-category="autograph-cards">Autograph Cards</a>
+    <a href="#" data-category="memorabilia-cards">Memorabilia Cards</a>
+    <a href="#" data-category="rookie-cards">Rookie Cards</a>
+    <a href="#" data-category="insert-parallel-cards">Insert/Parallel Cards</a>
+    <a href="#" data-category="base-cards">Base Cards</a>
+  </div>
+
+  <!-- Collection Section -->
+  <section class="collection">
+    <div id="graded-cards" class="cards-grid">
+      <div class="card-item">
+        <img src="https://i.imgur.com/O17hKPv.jpeg" alt="2016 Donruss Optic #162 Dak Prescott Rated Rookie Card PSA 9">
+        <h4>2016 Donruss Optic #162 Dak Prescott Rated Rookie Card PSA 9</h4>
+        <p>Value: $50.00</p>
+        <p>Condition: 9</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/B9VoyGF.jpeg" alt="2016 Select #70 Dak Prescott Rookie Card PSA 9">
+        <h4>2016 Select #70 Dak Prescott Rookie Card PSA 9</h4>
+        <p>Value: $50.00</p>
+        <p>Condition: 9</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/OQ9Mj0g.jpeg" alt="2018 Panini Phoenix QB Vision Color Burst #3 Dak Prescott PSA 9">
+        <h4>2018 Panini Phoenix QB Vision Color Burst #3 Dak Prescott PSA 9</h4>
+        <p>Value: $25.00</p>
+        <p>Condition: 9</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/aJIwRVF.jpeg" alt="2021 Mosaic Glass Mosaic #GM5 Dak Prescott Case Hit PSA 9">
+        <h4>2021 Mosaic Glass Mosaic #GM5 Dak Prescott Case Hit PSA 9</h4>
+        <p>Value: $50.00</p>
+        <p>Condition: 9</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/t5SShVM.jpeg" alt="2021 Rookies and Stars Star Studded Pink #15 Dak Prescott #'d 62/75 PSA 9">
+        <h4>2021 Rookies and Stars Star Studded Pink #15 Dak Prescott #'d 62/75 PSA 9</h4>
+        <p>Value: $40.00</p>
+        <p>Condition: 9</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/5JSxETj.jpeg" alt="2022 Panini Prizm Prizms No Huddle Red #76 Dak Prescott #'d 22/50 PSA 9">
+        <h4>2022 Panini Prizm Prizms No Huddle Red #76 Dak Prescott #'d 22/50 PSA 9</h4>
+        <p>Value: $40.00</p>
+        <p>Condition: 9</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/GA2PUWL.jpeg" alt="2022 Luminance Vestige #DPR Dak Prescott PSA 10">
+        <h4>2022 Luminance Vestige #DPR Dak Prescott PSA 10</h4>
+        <p>Value: $40.00</p>
+        <p>Condition: 10</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/ASKnndw.jpeg" alt="2023 Absolute Blue Diamonds #26 Dak Prescott #'d 02/99 PSA 9">
+        <h4>2023 Absolute Blue Diamonds #26 Dak Prescott #'d 02/99 PSA 9</h4>
+        <p>Value: $25.00</p>
+        <p>Condition: 9</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/qtzjDS9.jpeg" alt="2023 Donruss Elite Black #20 Dak Prescott #'d 15/25 PSA 9">
+        <h4>2023 Donruss Elite Black #20 Dak Prescott #'d 15/25 PSA 9</h4>
+        <p>Value: $50.00</p>
+        <p>Condition: 9</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/n2pgGws.jpeg" alt="2023 Luminance Luminosity #LUM8 Dak Prescott PSA 9">
+        <h4>2023 Luminance Luminosity #LUM8 Dak Prescott PSA 9</h4>
+        <p>Value: $50.00</p>
+        <p>Condition: 9</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/a8MHiQk.jpeg" alt="2023 Panini Contenders License to Dominate #1 Dak Prescott Case Hit PSA 9">
+        <h4>2023 Panini Contenders License to Dominate #1 Dak Prescott Case Hit PSA 9</h4>
+        <p>Value: $50.00</p>
+        <p>Condition: 9</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/XpJn5fB.jpeg" alt="2023 Phoenix '99 Passing the Torch Auto #DP Dak Prescott PSA 9">
+        <h4>2023 Phoenix '99 Passing the Torch Auto #DP Dak Prescott PSA 9</h4>
+        <p>Value: $150.00</p>
+        <p>Condition: 9</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/7klnqCw.jpeg" alt="2023 Phoenix Flame Throwers Red #4 Dak Prescott #'d 98/199 PSA 9">
+        <h4>2023 Phoenix Flame Throwers Red #4 Dak Prescott #'d 98/199 PSA 9</h4>
+        <p>Value: $30.00</p>
+        <p>Condition: 9</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/W7szr7X.jpeg" alt="2024 Mosaic Money #25 Dak Prescott Case Hit PSA 9">
+        <h4>2024 Mosaic Money #25 Dak Prescott Case Hit PSA 9</h4>
+        <p>Value: $80.00</p>
+        <p>Condition: 9</p>
+      </div>
+    </div>
+    <div id="autograph-cards" class="cards-grid hidden">
+      <div class="card-item">
+        <img src="https://i.imgur.com/12z4AZM.jpeg" alt="2016 Panini Phoenix Rookie Jumbo Patch Auto #11 Dak Prescott #'d 37/199">
+        <h4>2016 Panini Phoenix Rookie Jumbo Patch Auto #11 Dak Prescott #'d 37/199</h4>
+        <p>Value: $150.00</p>
+        <p>Condition: Raw</p>
+      </div>
+    </div>
+    <div id="memorabilia-cards" class="cards-grid hidden">
+      <div class="card-item">
+        <img src="https://i.imgur.com/eLLr2RM.jpeg" alt="2017 Panini Spectra Synced Swatches #28 Beasley/Dak Prescott #'d 35/199">
+        <h4>2017 Panini Spectra Synced Swatches #28 Beasley/Dak Prescott #'d 35/199</h4>
+        <p>Value: $10.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/nlWawRZ.jpeg" alt="2017 Spectra Rivals Jerseys #17 Dak Prescott/Kirk Cousins #'d 44/50">
+        <h4>2017 Spectra Rivals Jerseys #17 Dak Prescott/Kirk Cousins #'d 44/50</h4>
+        <p>Value: $20.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/FnMH5ub.jpeg" alt="2018 Panini Plates and Patches Talented Trios Patches #2 Dak Prescott/Elliott/Gallup #'d 36/50">
+        <h4>2018 Panini Plates and Patches Talented Trios Patches #2 Dak Prescott/Elliott/Gallup #'d 36/50</h4>
+        <p>Value: $20.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/n3EZorA.jpeg" alt="2018 Panini Spectra Sunday Spectacle Jerseys Neon Blue #7 Dak Prescott #'d 49/99">
+        <h4>2018 Panini Spectra Sunday Spectacle Jerseys Neon Blue #7 Dak Prescott #'d 49/99</h4>
+        <p>Value: $10.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/b58S40l.jpeg" alt="2018 Rookies and Stars NFL Authentic Jerseys #7 Dak Prescott">
+        <h4>2018 Rookies and Stars NFL Authentic Jerseys #7 Dak Prescott</h4>
+        <p>Value: $10.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/RcPvUZZ.jpeg" alt="2019 Panini Luminance Jumbo Jerseys #13 Dak Prescott">
+        <h4>2019 Panini Luminance Jumbo Jerseys #13 Dak Prescott</h4>
+        <p>Value: $10.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/asQV3dC.jpeg" alt="2022 Immaculate Collection Immaculate Triple Jerseys #15 Romo/Staubach/Dak Prescott 36/49">
+        <h4>2022 Immaculate Collection Immaculate Triple Jerseys #15 Romo/Staubach/Dak Prescott 36/49</h4>
+        <p>Value: $100.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/YFTyObJ.jpeg" alt="2023 Absolute Tools of the Trade Double Materials #19 Dak Prescott #'d 184/249">
+        <h4>2023 Absolute Tools of the Trade Double Materials #19 Dak Prescott #'d 184/249</h4>
+        <p>Value: $20.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/FnMH5ub.jpeg" alt="2023 Absolute Tools of the Trade Double Materials Prime #19 Dak Prescott #'d 16/49">
+        <h4>2023 Absolute Tools of the Trade Double Materials Prime #19 Dak Prescott #'d 16/49</h4>
+        <p>Value: $15.00</p>
+        <p>Condition: Damaged</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/VCh5ckG.jpeg" alt="2023 Panini Spectra Rivals Materials Hyper #3 Jalen Hurts/Dak Prescott #'d 03/99">
+        <h4>2023 Panini Spectra Rivals Materials Hyper #3 Jalen Hurts/Dak Prescott #'d 03/99</h4>
+        <p>Value: $18.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/OWz6Wwg.jpeg" alt="2023 Panini Spectra Rivals Materials Hyper #3 Jalen Hurts/Dak Prescott #'d 53/75">
+        <h4>2023 Panini Spectra Rivals Materials Hyper #3 Jalen Hurts/Dak Prescott #'d 53/75</h4>
+        <p>Value: $20.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/YooQbNj.jpeg" alt="2024 Donruss Optic Donruss Threads Blue Hyper #2 Dak Prescott Jersey Card">
+        <h4>2024 Donruss Optic Donruss Threads Blue Hyper #2 Dak Prescott Jersey Card</h4>
+        <p>Value: $10.00</p>
+        <p>Condition: Raw</p>
+      </div>
+    </div>
+    <div id="rookie-cards" class="cards-grid hidden">
+      <div class="card-item">
+        <img src="https://i.imgur.com/A2XEmag.jpeg" alt="2016 Donruss #362 Dak Prescott Rated Rookie Card">
+        <h4>2016 Donruss #362 Dak Prescott Rated Rookie Card</h4>
+        <p>Value: $25.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/q5Afvlk.jpeg" alt="2016 Donruss Optic #162 Dak Prescott Rated Rookie Card">
+        <h4>2016 Donruss Optic #162 Dak Prescott Rated Rookie Card</h4>
+        <p>Value: $25.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/0ovqrkS.jpeg" alt="2016 Panini #289 Dak Prescott Rookie Card">
+        <h4>2016 Panini #289 Dak Prescott Rookie Card</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/I3WHLE0.jpeg" alt="2016 Playoff #272 Dak Prescott Rookie Card">
+        <h4>2016 Playoff #272 Dak Prescott Rookie Card</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/fS9RZ8F.jpeg" alt="2016 Rookies and Stars #179 Dak Prescott Rookie Card">
+        <h4>2016 Rookies and Stars #179 Dak Prescott Rookie Card</h4>
+        <p>Value: $15.00</p>
+        <p>Condition: Raw</p>
+      </div>
+    </div>
+    <div id="insert-parallel-cards" class="cards-grid hidden">
+      <div class="card-item">
+        <img src="https://i.imgur.com/CVst7Ri.jpeg" alt="2018 Panini Luminance Orange #35 Dak Prescott #'d 29/225">
+        <h4>2018 Panini Luminance Orange #35 Dak Prescott #'d 29/225</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/8hb3YF1.jpeg" alt="2020 Donruss Optic Pink Velocity #29 Dak Prescott #'d 46/79">
+        <h4>2020 Donruss Optic Pink Velocity #29 Dak Prescott #'d 46/79</h4>
+        <p>Value: $10.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/2fgz3ln.jpeg" alt="2020 Panini Obsidian Electric Etch Orange #67 Dak Prescott #'d 47/75">
+        <h4>2020 Panini Obsidian Electric Etch Orange #67 Dak Prescott #'d 47/75</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/7a03Vx1.jpeg" alt="2020 Panini Phoenix Flame Throwers Blue #6 Dak Prescott #'d 02/35">
+        <h4>2020 Panini Phoenix Flame Throwers Blue #6 Dak Prescott #'d 02/35</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/2oRRY6X.jpeg" alt="2020 Panini Phoenix Yellow #51 Dak Prescott #'d 69/75">
+        <h4>2020 Panini Phoenix Yellow #51 Dak Prescott #'d 69/75</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/Q3kn50C.jpeg" alt="2020 Panini Spectra Hyper #19 Dak Prescott #'d 67/75">
+        <h4>2020 Panini Spectra Hyper #19 Dak Prescott #'d 67/75</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/3VMC9mT.jpeg" alt="2021 Clearly Donruss Clearly Dominant Red #8 Dak Prescott #'d 44/49">
+        <h4>2021 Clearly Donruss Clearly Dominant Red #8 Dak Prescott #'d 44/49</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/JyLtloR.jpeg" alt="2021 Donruss Optic Blue #22 Dak Prescott #'d 89/179">
+        <h4>2021 Donruss Optic Blue #22 Dak Prescott #'d 89/179</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/PtI8G3m.jpeg" alt="2021 Elite Aspirations #68 Dak Prescott #'d 37/96">
+        <h4>2021 Elite Aspirations #68 Dak Prescott #'d 37/96</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/GIY5226.jpeg" alt="2021 Panini Contenders Championship Ticket #25 Dak Prescott #'d 17/99">
+        <h4>2021 Panini Contenders Championship Ticket #25 Dak Prescott #'d 17/99</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/5vF9AnV.jpeg" alt="2021 Panini Encased Ruby #25 Dak Prescott #'d 6/15">
+        <h4>2021 Panini Encased Ruby #25 Dak Prescott #'d 6/15</h4>
+        <p>Value: $10.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/Le1Ywqi.jpeg" alt="2021 Panini Illusions Illusionists Light Blue #8 Dak Prescott #'d 65/299">
+        <h4>2021 Panini Illusions Illusionists Light Blue #8 Dak Prescott #'d 65/299</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/ywRBKur.jpeg" alt="2021 Panini Phoenix Purple #29 Dak Prescott #'d 81/125">
+        <h4>2021 Panini Phoenix Purple #29 Dak Prescott #'d 81/125</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/MAK39UW.jpeg" alt="2021 Panini Phoenix Red Lazer #29 Dak Prescott #'d 008/285">
+        <h4>2021 Panini Phoenix Red Lazer #29 Dak Prescott #'d 008/285</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/V8hJzKk.jpeg" alt="2021 Panini Phoenix Teal #29 Dak Prescott #'d 26/150">
+        <h4>2021 Panini Phoenix Teal #29 Dak Prescott #'d 26/150</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/PBnnQTN.jpeg" alt="2021 Rookies and Stars Star Studded Blue #15 Dak Prescott #'d 33/50">
+        <h4>2021 Rookies and Stars Star Studded Blue #15 Dak Prescott #'d 33/50</h4>
+        <p>Value: $10.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/aUdi2qd.jpeg" alt="2021 Rookies and Stars Star Studded White #15 Dak Prescott #'d 98/149">
+        <h4>2021 Rookies and Stars Star Studded White #15 Dak Prescott #'d 98/149</h4>
+        <p>Value: $10.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/pzgPzWm.jpeg" alt="2022 Absolute Orange Mosaic #21 Dak Prescott #'d 199/199">
+        <h4>2022 Absolute Orange Mosaic #21 Dak Prescott #'d 199/199</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/uJOdHie.jpeg" alt="2022 Donruss Optic Aqua #51 Dak Prescott #'d 90/299">
+        <h4>2022 Donruss Optic Aqua #51 Dak Prescott #'d 90/299</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/Ud6np4r.jpeg" alt="2022 Immaculate Collection #25 Dak Prescott #'d 94/99">
+        <h4>2022 Immaculate Collection #25 Dak Prescott #'d 94/99</h4>
+        <p>Value: $10.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/KVxC0T9.jpeg" alt="2022 Panini Chronicles Studio Pink #21 Dak Prescott #'d 46/199">
+        <h4>2022 Panini Chronicles Studio Pink #21 Dak Prescott #'d 46/199</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/ZwDgEW3.jpeg" alt="2022 Panini Contenders MVP Contenders Silver #14 Dak Prescott #'d 22/99">
+        <h4>2022 Panini Contenders MVP Contenders Silver #14 Dak Prescott #'d 22/99</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/XUu5Sc2.jpeg" alt="2022 Panini Illusions Blue #24 Dak Prescott #'d 33/75">
+        <h4>2022 Panini Illusions Blue #24 Dak Prescott #'d 33/75</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/eIeaYmy.jpeg" alt="2022 Panini Illusions Red #24 Dak Prescott #'d 126/175">
+        <h4>2022 Panini Illusions Red #24 Dak Prescott #'d 126/175</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/Btcg4iJ.jpeg" alt="2022 Panini Illusions Teal #24 Dak Prescott #'d 27/175">
+        <h4>2022 Panini Illusions Teal #24 Dak Prescott #'d 27/175</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/WWmMopM.jpeg" alt="2022 Panini Legacy Under the Lights Orange #26 Dak Prescott #'d 117/149">
+        <h4>2022 Panini Legacy Under the Lights Orange #26 Dak Prescott #'d 117/149</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/qrU1zBV.jpeg" alt="2023 Elite Maroon #20 Dak Prescott #'d 004/149">
+        <h4>2023 Elite Maroon #20 Dak Prescott #'d 004/149</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/n9Cd8fZ.jpeg" alt="2023 Panini Prizm Draft Picks Prizms Blue #20 Dak Prescott #'d 190/199">
+        <h4>2023 Panini Prizm Draft Picks Prizms Blue #20 Dak Prescott #'d 190/199</h4>
+        <p>Value: $10.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/xMxerkI.jpeg" alt="2023 Panini Prizm Prizms Hyper #73 Dak Prescott #'d 86/175">
+        <h4>2023 Panini Prizm Prizms Hyper #73 Dak Prescott #'d 86/175</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/S7GqR7K.jpeg" alt="2023 Prestige Prestigious Pros Xtra Points Red #4 Dak Prescott #'d 397/399">
+        <h4>2023 Prestige Prestigious Pros Xtra Points Red #4 Dak Prescott #'d 397/399</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/H8N6KNv.jpeg" alt="2023 Select Prizm Orange Die Cut #282 Dak Prescott #'d 323/399">
+        <h4>2023 Select Prizm Orange Die Cut #282 Dak Prescott #'d 323/399</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/dczku8w.jpeg" alt="2024 Absolute Spectrum Red #26 Dak Prescott #'d 44/125">
+        <h4>2024 Absolute Spectrum Red #26 Dak Prescott #'d 44/125</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/20VTCzT.jpeg" alt="2024 Certified Gold Team Mirror Pink #6 Dak Prescott #'d 34/199">
+        <h4>2024 Certified Gold Team Mirror Pink #6 Dak Prescott #'d 34/199</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/4qVhSXw.jpeg" alt="2024 Certified Mirror #25 Dak Prescott #'d 312/349">
+        <h4>2024 Certified Mirror #25 Dak Prescott #'d 312/349</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/nfGduLZ.jpeg" alt="2024 Elite Blue #20 Dak Prescott #'d 20/99">
+        <h4>2024 Elite Blue #20 Dak Prescott #'d 20/99</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/DqaQiCy.jpeg" alt="2024 Elite Orange #20 Dak Prescott #'d 355/399">
+        <h4>2024 Elite Orange #20 Dak Prescott #'d 355/399</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/q8yJdwd.jpeg" alt="2024 Mosaic Carbon Copy Mosaic Blue #11 Dak Prescott/Love #'d 79/99">
+        <h4>2024 Mosaic Carbon Copy Mosaic Blue #11 Dak Prescott/Love #'d 79/99</h4>
+        <p>Value: $10.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/1DVMSoi.jpeg" alt="2024 Mosaic Mosaic Blue Fluorescent #57 Dak Prescott #'d 15/15">
+        <h4>2024 Mosaic Mosaic Blue Fluorescent #57 Dak Prescott #'d 15/15</h4>
+        <p>Value: $25.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/O0gTGZy.jpeg" alt="2024 Panini Origins Gold #45 Dak Prescott #'d 13/25">
+        <h4>2024 Panini Origins Gold #45 Dak Prescott #'d 13/25</h4>
+        <p>Value: $10.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/AeKiwXU.jpeg" alt="2024 Panini PhotoGenic For The Cure Red #4 Dak Prescott #'d 08/49">
+        <h4>2024 Panini PhotoGenic For The Cure Red #4 Dak Prescott #'d 08/49</h4>
+        <p>Value: $10.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/A4van2j.jpeg" alt="2024 Panini Prizm Deca Prizms Black Gold Shimmer FOTL #77 Dak Prescott #'d 1/8">
+        <h4>2024 Panini Prizm Deca Prizms Black Gold Shimmer FOTL #77 Dak Prescott #'d 1/8</h4>
+        <p>Value: $150.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/f3gbvNu.jpeg" alt="2024 Panini Prizm Prizms Purple Wave #73 Dak Prescott #'d 68/99">
+        <h4>2024 Panini Prizm Prizms Purple Wave #73 Dak Prescott #'d 68/99</h4>
+        <p>Value: $10.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/Erbs91p.jpeg" alt="2024 Panini Prizm Prizms Red Wave #73 Dak Prescott #'d 126/149">
+        <h4>2024 Panini Prizm Prizms Red Wave #73 Dak Prescott #'d 126/149</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/gpMazFU.jpeg" alt="2024 Panini Spectra Astral #32 Dak Prescott #'d 23/40">
+        <h4>2024 Panini Spectra Astral #32 Dak Prescott #'d 23/40</h4>
+        <p>Value: $15.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/3aCp29y.jpeg" alt="2024 Panini Spectra Interstellar #32 Dak Prescott #'d 40/60">
+        <h4>2024 Panini Spectra Interstellar #32 Dak Prescott #'d 40/60</h4>
+        <p>Value: $15.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/8tRoI7j.jpeg" alt="2024 Panini Spectra Neon Blue Die Cut #32 Dak Prescott #'d 46/50">
+        <h4>2024 Panini Spectra Neon Blue Die Cut #32 Dak Prescott #'d 46/50</h4>
+        <p>Value: $15.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/0ZZ1GRm.jpeg" alt="2024 Panini Spectra Universal Die Cut #32 Dak Prescott #'d 10/10">
+        <h4>2024 Panini Spectra Universal Die Cut #32 Dak Prescott #'d 10/10</h4>
+        <p>Value: $25.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/WMfSnyD.jpeg" alt="2024 Prestige Power House Xtra Points Red #16 Dak Prescott #'d 176/399">
+        <h4>2024 Prestige Power House Xtra Points Red #16 Dak Prescott #'d 176/399</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/rNFEgY4.jpeg" alt="2024 Prestige Prestigious Pros Xtra Points Red #3 Dak Prescott #'d 198/399">
+        <h4>2024 Prestige Prestigious Pros Xtra Points Red #3 Dak Prescott #'d 198/399</h4>
+        <p>Value: $3.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/qmTzuXi.jpeg" alt="2024 Prestige Xtra Points Red #75 Dak Prescott #'d 857/999">
+        <h4>2024 Prestige Xtra Points Red #75 Dak Prescott #'d 857/999</h4>
+        <p>Value: $3.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/fmDSDVg.jpeg" alt="2024 Rookies and Stars Orange #29 Dak Prescott #'d 163/249">
+        <h4>2024 Rookies and Stars Orange #29 Dak Prescott #'d 163/249</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/f3LAgMV.jpeg" alt="2024 Score Showcase #73 Dak Prescott #'d 63/100">
+        <h4>2024 Score Showcase #73 Dak Prescott #'d 63/100</h4>
+        <p>Value: $5.00</p>
+        <p>Condition: Raw</p>
+      </div>
+      <div class="card-item">
+        <img src="https://i.imgur.com/3wT80Jh.jpeg" alt="2024 Zenith State of the Art Blue #5 Dak Prescott #'d 03/25">
+        <h4>2024 Zenith State of the Art Blue #5 Dak Prescott #'d 03/25</h4>
+        <p>Value: $50.00</p>
+        <p>Condition: Raw</p>
+      </div>
+    </div>
+    <div id="base-cards" class="cards-grid hidden">
+      <!-- No cards assigned to Base Cards yet -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 The Premium Exchange. All Rights Reserved.</p>
+    <p><a href="https://thepremiumexchange.github.io/premium-exchange-site/" target="_blank">Back to Home</a></p>
+  </footer>
+
+  <script>
+    // Add event listeners to category links
+    document.addEventListener('DOMContentLoaded', () => {
+      const links = document.querySelectorAll('.categories a');
+      links.forEach(link => {
+        link.addEventListener('click', (event) => {
+          event.preventDefault(); // Prevent default anchor behavior
+          const category = link.getAttribute('data-category');
+          showCategory(category, link); // Pass the link element
+        });
+      });
+
+      // Show Graded Cards by default
+      showCategory('graded-cards', links[0]);
+    });
+
+    function showCategory(category, link) {
+      // Hide all categories
+      const categories = ['graded-cards', 'autograph-cards', 'memorabilia-cards', 'rookie-cards', 'insert-parallel-cards', 'base-cards'];
+      categories.forEach(cat => {
+        document.getElementById(cat).classList.add('hidden');
+      });
+
+      // Show the selected category
+      document.getElementById(category).classList.remove('hidden');
+
+      // Update active link
+      const allLinks = document.querySelectorAll('.categories a');
+      allLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+    }
+  </script>
+</body>
+</html>
