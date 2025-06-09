@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Premium Exchange - Trading Card Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: linear-gradient(135deg, #e6e6e6 0%, #ffffff 100%);
+      color: #333;
+      line-height: 1.6;
+    }
+    /* Header */
+    header {
+      background: linear-gradient(90deg, #003087 0%, #041E42 100%);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header img {
+      max-width: 200px;
+      height: auto;
+      margin-right: 20px;
+    }
+    .header-text {
+      flex: 1;
+      text-align: center;
+    }
+    header h1 a {
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 36px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      transition: color 0.3s ease;
+    }
+    header h1 a:hover {
+      color: #869397;
+    }
+    header p {
+      color: #FFFFFF;
+      font-size: 16px;
+      font-style: italic;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
+    /* Navigation */
+    nav {
+      background: #041E42;
+      padding: 10px 0;
+      text-align: center;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    nav ul li {
+      display: inline;
+    }
+    nav ul li a {
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 10px 15px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    nav ul li a:hover {
+      background: #869397;
+      color: #003087;
+      border-radius: 5px;
+    }
+    /* Sections */
+    .section {
+      padding: 50px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .section h2 {
+      font-size: 36px;
+      color: #003087;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+      background: linear-gradient(90deg, #003087, #041E42);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeIn 1s ease-in-out;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      justify-items: center;
+    }
+    .card {
+      background: #FFFFFF;
+      border: 3px solid #869397;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      width: 300px;
+      height: 570px; /* Increased for Personal Collections */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card.sale-card {
+      height: 480px; /* Kept for Cards for Sale */
+    }
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(134,147,151,0.5);
+    }
+    .card img {
+      max-width: 100%;
+      height: 420px; /* Increased for Personal Collections to show full images */
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
+    .card .dual-images {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .card .dual-images img {
+      max-width: 48%;
+      height: auto;
+    }
+    .card h3 {
+      font-size: 20px;
+      color: #003087;
+      margin-bottom: 10px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      flex-grow: 1;
+    }
+    .card a {
+      display: inline-block;
+      padding: 15px 30px; /* Kept for Cards for Sale buttons */
+      background: linear-gradient(90deg, #003087, #041E42);
+      color: #FFFFFF;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .card a:hover {
+      background: #869397;
+      transform: scale(1.1);
+      color: #003087;
+    }
+    /* Footer */
+    footer {
+      background: linear-gradient(90deg, #003087, #041E42);
+      padding: 20px;
+      text-align: center;
+      color: #FFFFFF;
+      border-top: 5px solid #869397;
+    }
+    footer p {
+      font-size: 14px;
+      margin-bottom: 10px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
+    footer a {
+      color: #FFFFFF;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    footer a:hover {
+      color: #869397;
+    }
+    /* Animations */
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    @keyframes slideUp {
+      0% { transform: translateY(20px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes bounceIn {
+      0% { transform: scale(0.5); opacity: 0; }
+      60% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+      header img {
+        margin-bottom: 10px;
+      }
+      header h1 a {
+        font-size: 28px;
+      }
+      header p {
+        font-size: 14px;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .section h2 {
+        font-size: 28px;
+      }
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .card .dual-images {
+        flex-direction: column;
+      }
+      .card .dual-images img {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <img src="https://i.imgur.com/alk4ahY.png" alt="The Premium Exchange Logo">
+    <div class="header-text">
+      <h1><a href="https://your-username.github.io/premium-exchange-site/" target="_blank">The Premium Exchange</a></h1>
+      <p>Your Ultimate Trading Card Destination</p>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="#cards-for-sale">Cards for Sale</a></li>
+      <li><a href="#personal-collections">Personal Collections</a></li>
+      <li><a href="#social-media">Social Media</a></li>
+      <li><a href="#contact-me">Contact Me</a></li>
+    </ul>
+  </nav>
+
+  <!-- Cards for Sale Section -->
+  <section id="cards-for-sale" class="section">
+    <h2>Cards for Sale</h2>
+    <p>Grab rare trading cards from my eBay store! Don’t miss out on these exclusive deals!</p>
+    <div class="cards-grid">
+      <div class="card sale-card">
+        <div class="dual-images">
+          <img src="https://d1htnxwo4o0jhw.cloudfront.net/cert/175478125/small/00tfSS7N_k24KfrWc5TLnw.jpg" alt="2024 Mosaic Notoriety #19 Jayden Daniels Green Fluorescent PSA 10 #'d 07/10 - Image 1">
+          <img src="https://d1htnxwo4o0jhw.cloudfront.net/cert/175478125/small/udE6oAtd6EuW3OeetM4jiw.jpg" alt="2024 Mosaic Notoriety #19 Jayden Daniels Green Fluorescent PSA 10 #'d 07/10 - Image 2">
+        </div>
+        <h3>2024 Mosaic Notoriety #19 Jayden Daniels Green Fluorescent PSA 10 #'d 07/10</h3>
+        <a href="https://www.ebay.com/itm/135750977249" target="_blank">Shop Now - $7500 or Best Offer</a>
+      </div>
+      <div class="card sale-card">
+        <div class="dual-images">
+          <img src="https://d1htnxwo4o0jhw.cloudfront.net/cert/175478138/small/BwprszlbIEi-a_3EbWX5Zw.jpg" alt="2024 Rookies & Stars Airborne Silver #ADME Drake Maye PSA 10 - Image 1">
+          <img src="https://d1htnxwo4o0jhw.cloudfront.net/cert/175478138/small/DTTn9rzb4EymgaMwYgP5tg_199f0.jpg" alt="2024 Rookies & Stars Airborne Silver #ADME Drake Maye PSA 10 - Image 2">
+        </div>
+        <h3>2024 Rookies & Stars Airborne Silver #ADME Drake Maye PSA 10</h3>
+        <a href="https://www.ebay.com/itm/146553864915" target="_blank">Shop Now - $80 or Best Offer</a>
+      </div>
+    </div>
+    <div style="margin-top: 30px;"></div> <!-- Added space above Explore All Listings -->
+    <p><a href="https://www.ebay.com/str/premiumexchangetradingcards?_trksid=p4429486.m3561.l161211" target="_blank" style="display: inline-block; padding: 10px 20px; background: #003087; color: #FFFFFF; text-decoration: none; border-radius: 5px;">Explore All Listings</a></p>
+  </section>
+
+  <!-- Personal Collections Section -->
+  <section id="personal-collections" class="section">
+    <h2>Personal Collections</h2>
+    <p>Check out my prized trading card collections—built with passion for fans like you!</p>
+    <div class="cards-grid">
+      <div class="card">
+        <img src="https://i.imgur.com/XpJn5fB.jpeg" alt="Dak Prescott Collection">
+        <h3>Dak Prescott Collection</h3>
+        <a href="#" target="_blank">Explore Collection</a>
+      </div>
+      <div class="card">
+        <img src="https://i.imgur.com/LJhOnd7.jpeg" alt="Troy Aikman Collection">
+        <h3>Troy Aikman Collection</h3>
+        <a href="#" target="_blank">Explore Collection</a>
+      </div>
+      <div class="card">
+        <img src="https://i.imgur.com/qKZedOv.jpeg" alt="Tony Romo Collection">
+        <h3>Tony Romo Collection</h3>
+        <a href="#" target="_blank">Explore Collection</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Media Section -->
+  <section id="social-media" class="section">
+    <h2>Social Media</h2>
+    <p>Follow me for the latest card updates, trades, and exclusive offers!</p>
+    <div class="cards-grid">
+      <div class="card">
+        <img src="https://i.imgur.com/xk7oF9p.png" alt="X Logo" style="background: #000000; padding: 10px;">
+        <h3>X</h3>
+        <a href="https://x.com/your-x-handle" target="_blank">Follow @your-x-handle</a>
+      </div>
+      <div class="card">
+        <img src="https://i.imgur.com/3V7oX9m.png" alt="Instagram Logo" style="background: #FFFFFF; padding: 10px;">
+        <h3>Instagram</h3>
+        <a href="https://instagram.com/your-ig-handle" target="_blank">Follow @your-ig-handle</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Me Section -->
+  <section id="contact-me" class="section">
+    <h2>Contact Me</h2>
+    <p>Interested in a trade or have questions? Reach out today!</p>
+    <p><a href="mailto:your-email@example.com" style="display: inline-block; padding: 10px 20px; background: #003087; color: #FFFFFF; text-decoration: none; border-radius: 5px;">Email Me</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 The Premium Exchange. All Rights Reserved.</p>
+    <p><a href="https://www.ebay.com/str/premiumexchangetradingcards?_trksid=p4429486.m3561.l161211" target="_blank">Visit My eBay Store</a></p>
+  </footer>
+</body>
+</html>
